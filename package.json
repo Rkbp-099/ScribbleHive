@@ -1,0 +1,24 @@
+{
+  "name": "restful-blog-app",
+  "version": "1.0.0",
+  "description": "A blog app for learning RESTful routing",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rkbp-099/RESTful-Blog-app.git"
+  },
+  "author": "Rkbp-099",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rkbp-099/RESTful-Blog-app/issues"
+  },
+  "homepage": "https://github.com/Rkbp-099/RESTful-Blog-app#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.6.0"
+  }
+}
