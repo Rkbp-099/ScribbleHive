@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 var blogSchema = new mongoose.Schema({
     title: String,
-    Image: String,
+    image: String,
     body: String,
     created:{type: Date, default: Date.now },
 
@@ -19,20 +19,21 @@ var blogSchema = new mongoose.Schema({
 
 var Blog = mongoose.model("Blog", blogSchema);
 
-// Test blog 
-Blog.create({
-    title: "Test blog",
-    Image: "https://images.unsplash.com/photo-1560306843-33986aebaf12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-    body: "What the fuck!!",
-});
+// // Test blog 
+// Blog.create({
+//     title: "Test blog",
+//     image: "https://images.unsplash.com/photo-1560306843-33986aebaf12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+//     body: "What the fuck!!",
+// });
 
 //  RESTful routes 
+
 
 app.get("/",function(req,res){
     res.redirect("/blogs");
 });
 
-
+// INDEX Route
 app.get("/blogs",function(req,res){
     Blog.find({},function(err,blogs){
         if(err){
@@ -43,8 +44,21 @@ app.get("/blogs",function(req,res){
     });
 });
 
+// NEW Route
+app.get("/blogs/new",function(req,res){
+    res.render("new");
+});
 
-
+// CREATE Route
+app.post("/blogs",function(req,res){
+    Blog.create(req.body.blog, function(err, newBlog){
+        if(err){
+            res.render("new");
+        }else{
+            res.redirect("/blogs");
+        }
+    });
+});
 
 
 
