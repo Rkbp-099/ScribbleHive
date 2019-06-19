@@ -19,12 +19,6 @@ var blogSchema = new mongoose.Schema({
 
 var Blog = mongoose.model("Blog", blogSchema);
 
-// // Test blog 
-// Blog.create({
-//     title: "Test blog",
-//     image: "https://images.unsplash.com/photo-1560306843-33986aebaf12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-//     body: "What the fuck!!",
-// });
 
 //  RESTful routes 
 
@@ -56,6 +50,18 @@ app.post("/blogs",function(req,res){
             res.render("new");
         }else{
             res.redirect("/blogs");
+        }
+    });
+});
+
+// SHOW Route
+
+app.get("/blogs/:id",function(req,res){
+    Blog.findById(req.params.id,function(err, foundBlog){
+        if(err){
+            res.redirect("/blogs");
+        }else{
+            res.render("show", {blog: foundBlog});
         }
     });
 });
