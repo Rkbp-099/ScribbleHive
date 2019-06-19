@@ -4,8 +4,9 @@
         <div id="blog">
             <h2><%= blog.title %></h2>
             <img src="<%= blog.image %>" alt="Chutiya net">
-            <p><strong>Date: </strong><%= blog.created %></p>
-            <p><%= blog.body %></p>
+            <p><strong>Date: </strong><%= blog.created.toDateString() %></p>
+            <p><%= blog.body.substring(0, 100) %>...</p>
+            <a href="/blogs/<%= blog._id %>">Read More</a>
         </div>
     <% }) %>
 
