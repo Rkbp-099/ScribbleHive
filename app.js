@@ -19,6 +19,7 @@ var blogSchema = new mongoose.Schema({
 
 var Blog = mongoose.model("Blog", blogSchema);
 
+// ==================================================================================
 
 //  RESTful routes 
 
@@ -26,6 +27,7 @@ var Blog = mongoose.model("Blog", blogSchema);
 app.get("/",function(req,res){
     res.redirect("/blogs");
 });
+
 
 // INDEX Route
 app.get("/blogs",function(req,res){
@@ -38,10 +40,12 @@ app.get("/blogs",function(req,res){
     });
 });
 
+
 // NEW Route
 app.get("/blogs/new",function(req,res){
     res.render("new");
 });
+
 
 // CREATE Route
 app.post("/blogs",function(req,res){
@@ -54,14 +58,26 @@ app.post("/blogs",function(req,res){
     });
 });
 
-// SHOW Route
 
+// SHOW Route
 app.get("/blogs/:id",function(req,res){
     Blog.findById(req.params.id,function(err, foundBlog){
         if(err){
             res.redirect("/blogs");
         }else{
             res.render("show", {blog: foundBlog});
+        }
+    });
+});
+
+
+// EDIT Route
+app.get("/blogs/:id/edit",function(req,res){
+    Blog.findById(req.params.id,function(err, foundBlog){
+        if(err){
+            res.redirect("/blogs");
+        }else{
+            res.render("edit", {blog: foundBlog});
         }
     });
 });
