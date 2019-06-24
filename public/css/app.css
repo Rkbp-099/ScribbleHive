@@ -9,3 +9,7 @@ i.icon{
 #blog{
     margin: 5.0em;
 }
+
+#delete{
+    display: inline-block;
+}
